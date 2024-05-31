@@ -1,10 +1,12 @@
 import 'package:edu_unity/res/widget/cart_widget.dart';
+import 'package:edu_unity/res/widget/drawer_widget.dart';
 import 'package:edu_unity/view/colleges/college_registration_view.dart';
 import 'package:edu_unity/view/colleges/widget/college_details_widget.dart';
 import 'package:flutter/material.dart';
 
 import '../../res/constant/color/color.dart';
 import '../../res/constant/font/font.dart';
+import '../Dashboard/dashboard_view.dart';
 
 class CollegeView extends StatelessWidget {
   const CollegeView({super.key});
@@ -21,6 +23,7 @@ class CollegeView extends StatelessWidget {
           )
         ],
       ),
+      drawer: DrawerWidget(),
       body: Padding(
         padding: const EdgeInsets.all(15),
         child: Column(

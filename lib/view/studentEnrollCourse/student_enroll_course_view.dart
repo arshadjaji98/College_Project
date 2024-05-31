@@ -2,8 +2,11 @@ import 'package:edu_unity/res/widget/cart_widget.dart';
 import 'package:edu_unity/view/studentEnrollCourse/widget/student_enroll_course_widget.dart';
 import 'package:flutter/material.dart';
 
-class StudentEnrolCourseView extends StatelessWidget {
-  const StudentEnrolCourseView({super.key});
+import '../../res/widget/drawer_widget.dart';
+import '../Dashboard/dashboard_view.dart';
+
+class StudentEnrollCourseView extends StatelessWidget {
+  const StudentEnrollCourseView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +20,7 @@ class StudentEnrolCourseView extends StatelessWidget {
           )
         ],
       ),
+      drawer: DrawerWidget(),
       body: Padding(
         padding: const EdgeInsets.all(15),
         child: Column(

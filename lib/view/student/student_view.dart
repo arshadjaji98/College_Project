@@ -3,6 +3,8 @@ import 'package:edu_unity/view/student/student_detail_view.dart';
 import 'package:flutter/material.dart';
 
 import '../../res/widget/app_dropdown.dart';
+import '../../res/widget/drawer_widget.dart';
+import '../Dashboard/dashboard_view.dart';
 
 class StudentView extends StatelessWidget {
   const StudentView({super.key});
@@ -19,6 +21,7 @@ class StudentView extends StatelessWidget {
           )
         ],
       ),
+      drawer: DrawerWidget(),
       body: Padding(
         padding: const EdgeInsets.only(left: 15, right: 15, bottom: 15),
         child: Column(

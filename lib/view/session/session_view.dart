@@ -2,6 +2,9 @@ import 'package:edu_unity/res/widget/cart_widget.dart';
 import 'package:edu_unity/view/session/widget/session_details_widget.dart';
 import 'package:flutter/material.dart';
 
+import '../../res/widget/drawer_widget.dart';
+import '../Dashboard/dashboard_view.dart';
+
 class SessionView extends StatelessWidget {
   const SessionView({super.key});
 
@@ -17,6 +20,7 @@ class SessionView extends StatelessWidget {
           )
         ],
       ),
+      drawer: DrawerWidget(),
       body: Padding(
         padding: const EdgeInsets.all(15),
         child: Column(

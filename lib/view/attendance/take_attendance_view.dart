@@ -1,7 +1,14 @@
+import 'package:edu_unity/res/constant/font/font.dart';
+import 'package:edu_unity/res/widget/time_widget.dart';
+import 'package:edu_unity/view/attendance/widget/attentance_item_widget.dart';
+import 'package:edu_unity/view/attendance/widget/present_title_card_widget.dart';
+import 'package:edu_unity/view/attendance/widget/present_widget.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import '../../res/constant/color/color.dart';
+import '../../res/widget/date_widget.dart';
 
 class TakeAttendanceView extends StatefulWidget {
   const TakeAttendanceView({super.key});
@@ -13,7 +20,7 @@ class TakeAttendanceView extends StatefulWidget {
 class _TakeAttendanceViewState extends State<TakeAttendanceView> {
   DateTime _dateTime = DateTime.now();
 
-  void _showDatePicker() {
+  void _pickDate() {
     showDatePicker(
       context: context,
       initialDate: _dateTime,
@@ -40,15 +47,17 @@ class _TakeAttendanceViewState extends State<TakeAttendanceView> {
 
   @override
   Widget build(BuildContext context) {
-    String formattedDate = DateFormat('dd/MM/yy').format(_dateTime);
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('Take Attendance'),
         actions: const [
-          Icon(Icons.search),
+          // Text(
+          //   'save',
+          //   style: TextStyle(color: Colors.white, fontFamily: TFont.latoBold),
+          // ),
+          Icon(Icons.save),
           SizedBox(
-            width: 5,
+            width: 8,
           )
         ],
       ),
@@ -60,196 +69,55 @@ class _TakeAttendanceViewState extends State<TakeAttendanceView> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Expanded(
-                      child: Container(
-                        height: 42,
-                        decoration: BoxDecoration(
-                            border: Border.all(color: Colors.blue),
-                            borderRadius: BorderRadius.circular(8)),
-                        child: Padding(
-                            padding: const EdgeInsets.only(bottom: 8),
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                IconButton(
-                                    onPressed: () {
-                                      _showDatePicker();
-                                    },
-                                    icon: const Icon(Icons.calendar_month)),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 7),
-                                  child: Text(
-                                    formattedDate,
-                                    style: const TextStyle(fontSize: 15),
-                                  ),
-                                ),
-                              ],
-                            )),
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 16,
-                    ),
-                    Expanded(
-                      child: Container(
-                        height: 42,
-                        decoration: BoxDecoration(
-                            border: Border.all(color: Colors.blue),
-                            borderRadius: BorderRadius.circular(8)),
-                        child: Padding(
-                            padding: const EdgeInsets.only(bottom: 8),
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                IconButton(
-                                    onPressed: () {
-                                      _showTimePicker();
-                                    },
-                                    icon: const Icon(Icons.access_time)),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 7),
-                                  child: Text(
-                                    _timeOfDay.format(context).toString(),
-                                    style: const TextStyle(fontSize: 15),
-                                  ),
-                                ),
-                              ],
-                            )),
-                      ),
-                    ),
-                  ],
+                dateAndTimeWidget(),
+                const SizedBox(height: 16),
+                const PresentTitleCardWidget(
+                  present: '24',
+                  absent: '3',
+                  leave: '1',
                 ),
-                const SizedBox(height: 20),
-                SizedBox(
-                  width: double.infinity,
-                  height: 100,
-                  child: Card(
-                    color: Colors.white,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      side: const BorderSide(color: Colors.blue),
+                const SizedBox(height: 16),
+                Expanded(
+                  child: Container(
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      // color: Colors.white,
+                      borderRadius: BorderRadius.circular(8),
                     ),
-                    child: const Padding(
-                      padding: EdgeInsets.all(10),
+                    child: SingleChildScrollView(
                       child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Row(children: [
-                            Icon(Icons.close, color: Colors.red),
-                            Text("Absent  2", style: TextStyle(fontSize: 16)),
-                          ]),
-                          Row(children: [
-                            Icon(Icons.check, color: Colors.green),
-                            Text("Present  20", style: TextStyle(fontSize: 16)),
-                          ]),
-                          Row(children: [
-                            Icon(Icons.thermostat, color: Colors.grey),
-                            Text("Leave  1", style: TextStyle(fontSize: 16)),
-                          ]),
+                          Container(
+                            height: 35,
+                            width: double.infinity,
+                            decoration: const BoxDecoration(
+                                color: TColors.darkBlue,
+                                borderRadius: BorderRadius.only(
+                                    topRight: Radius.circular(6),
+                                    topLeft: Radius.circular(6))),
+                            child: const Center(
+                              child: Text(
+                                "Attendance",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.6,
+                            child: ListView.builder(
+                              itemBuilder: (context, index) {
+                                return const AttentanceItemWidget();
+                              },
+                              itemCount: 30,
+                            ),
+                          )
                         ],
                       ),
                     ),
-                  ),
-                ),
-                const SizedBox(height: 30),
-                Container(
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(8),
-                      border: Border.all(color: Colors.blue)),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Container(
-                        height: 30,
-                        width: double.infinity,
-                        decoration: const BoxDecoration(
-                            color: TColors.darkBlue,
-                            borderRadius: BorderRadius.only(
-                                topRight: Radius.circular(6),
-                                topLeft: Radius.circular(6))),
-                        child: const Center(
-                          child: Text(
-                            "Attendance",
-                            style: TextStyle(color: Colors.white),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 5, right: 5),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Container(
-                                height: 40,
-                                width: 40,
-                                decoration: BoxDecoration(
-                                    color: Colors.grey.withOpacity(0.1)),
-                                child: const Center(
-                                    child: Icon(
-                                  Icons.person_2,
-                                  color: Colors.grey,
-                                ))),
-                            const Expanded(
-                              child: ListTile(
-                                title: Text('Kashif Shah'),
-                              ),
-                            ),
-                            Row(
-                              children: [
-                                const Icon(Icons.close, color: Colors.red),
-                                const SizedBox(width: 5),
-                                Container(
-                                    height: 30, width: 1, color: Colors.grey),
-                                const SizedBox(width: 5),
-                                const Icon(Icons.thermostat),
-                                const SizedBox(width: 5),
-                                Container(
-                                    height: 30, width: 1, color: Colors.grey),
-                                const SizedBox(width: 5),
-                                const Icon(Icons.check, color: Colors.green),
-                              ],
-                            )
-                          ],
-                        ),
-                      ),
-                      const Divider(height: 1, thickness: 1),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 5, right: 5),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Container(
-                                height: 40,
-                                width: 40,
-                                decoration: BoxDecoration(
-                                    color: Colors.grey.withOpacity(0.1)),
-                                child: const Center(
-                                    child: Icon(Icons.person_2,
-                                        color: Colors.grey))),
-                            const Expanded(
-                              child: ListTile(
-                                title: Text('Kashif Shah'),
-                              ),
-                            ),
-                            const Icon(Icons.close, color: Colors.red),
-                            const SizedBox(width: 5),
-                            Container(height: 30, width: 1, color: Colors.grey),
-                            const SizedBox(width: 5),
-                            const Icon(Icons.thermostat),
-                            const SizedBox(width: 5),
-                            Container(height: 30, width: 1, color: Colors.grey),
-                            const SizedBox(width: 5),
-                            const Icon(Icons.check, color: Colors.green),
-                          ],
-                        ),
-                      ),
-                      const Divider(height: 1, thickness: 1),
-                    ],
                   ),
                 ),
               ],
@@ -280,6 +148,33 @@ class _TakeAttendanceViewState extends State<TakeAttendanceView> {
           )
         ],
       ),
+    );
+  }
+
+  Widget dateAndTimeWidget() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Expanded(
+            child: InkWell(
+                onTap: () {
+                  _pickDate();
+                },
+                child: DateWidget(
+                  date: DateFormat('dd/MM/yy').format(_dateTime),
+                ))),
+        const SizedBox(
+          width: 16,
+        ),
+        Expanded(
+          child: InkWell(
+            onTap: () {
+              _showTimePicker();
+            },
+            child: TimeWidget(time: _timeOfDay.format(context).toString()),
+          ),
+        ),
+      ],
     );
   }
 }

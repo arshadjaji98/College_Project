@@ -1,11 +1,8 @@
 import 'package:edu_unity/res/widget/cart_widget.dart';
 import 'package:edu_unity/view/attendance/widget/student_attendance_details.dart';
-import 'package:edu_unity/view/colleges/college_registration_view.dart';
-import 'package:edu_unity/view/colleges/widget/college_details_widget.dart';
 import 'package:flutter/material.dart';
 
-import '../../res/constant/color/color.dart';
-import '../../res/constant/font/font.dart';
+import '../Dashboard/dashboard_view.dart';
 
 class StudentAttendenceView extends StatelessWidget {
   const StudentAttendenceView({super.key});
@@ -22,6 +19,7 @@ class StudentAttendenceView extends StatelessWidget {
           )
         ],
       ),
+      drawer: DashboardView(),
       body: Padding(
         padding: const EdgeInsets.all(15),
         child: Column(
@@ -44,24 +42,6 @@ class StudentAttendenceView extends StatelessWidget {
                           item2: 'CS',
                         ))))
           ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton.extended(
-        backgroundColor: TColors.lightBlue,
-        foregroundColor: Colors.white,
-        onPressed: () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => const CollegeRegistrationView()));
-        },
-        label: const Text(
-          "Add",
-          style: TextStyle(
-              color: Colors.white,
-              fontFamily: TFont.ralewayBold,
-              fontSize: 14,
-              fontWeight: FontWeight.w700),
         ),
       ),
     );

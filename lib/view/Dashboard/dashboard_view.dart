@@ -20,7 +20,7 @@ class DashboardView extends StatelessWidget {
           )
         ],
       ),
-      drawer: const DrawerWidget(),
+      drawer: DrawerWidget(),
       body: Padding(
         padding: const EdgeInsets.all(15),
         child: Column(

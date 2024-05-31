@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../res/constant/color/color.dart';
 import '../../res/constant/font/font.dart';
 import '../../res/widget/cart_widget.dart';
+import '../../res/widget/drawer_widget.dart';
 import 'department_add_view.dart';
 import 'widget/department_detaile_widget.dart';
 
@@ -21,6 +22,7 @@ class DepartmentView extends StatelessWidget {
           )
         ],
       ),
+      drawer: DrawerWidget(),
       body: Padding(
         padding: const EdgeInsets.all(15),
         child: Column(

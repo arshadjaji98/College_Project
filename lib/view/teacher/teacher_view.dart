@@ -3,6 +3,9 @@ import 'package:edu_unity/res/widget/cart_widget.dart';
 import 'package:edu_unity/view/teacher/widget/teacher_details_widget.dart';
 import 'package:flutter/material.dart';
 
+import '../../res/widget/drawer_widget.dart';
+import '../Dashboard/dashboard_view.dart';
+
 class TeacherView extends StatelessWidget {
   const TeacherView({super.key});
 
@@ -18,6 +21,7 @@ class TeacherView extends StatelessWidget {
           )
         ],
       ),
+      drawer: DrawerWidget(),
       body: Padding(
         padding: const EdgeInsets.only(left: 15, right: 15, bottom: 15),
         child: Column(

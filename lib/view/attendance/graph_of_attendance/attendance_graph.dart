@@ -14,7 +14,7 @@ class _PercentageIndicatorState extends State<PercentageIndicator> {
   Widget build(BuildContext context) {
     return CircularPercentIndicator(
       radius: 25,
-      lineWidth: 8,
+      lineWidth: 6,
       percent: 0.4,
       progressColor: TColors.darkBlue,
       circularStrokeCap: CircularStrokeCap.round,
